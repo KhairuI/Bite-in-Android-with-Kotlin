@@ -184,6 +184,7 @@
 
                 <TextView
                     android:textColor="@color/black"
+                    android:id="@+id/pickBloodText"
                     android:textSize="20sp"
                     android:text="@string/group"
                     android:layout_width="wrap_content"
@@ -213,12 +214,14 @@
 
                 <CheckBox
                     android:text="@string/bangla"
+                    android:id="@+id/bangla"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
                 </CheckBox>
                 <CheckBox
+                    android:id="@+id/english"
                     android:text="@string/english"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -226,6 +229,7 @@
 
                 </CheckBox>
                 <CheckBox
+                   android:id="@+id/arabic"
                     android:text="@string/arabic"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -233,6 +237,7 @@
 
                 </CheckBox>
                 <CheckBox
+                    android:id="@+id/hindi"
                     android:text="@string/hindi"
                     android:layout_weight="1"
                     android:layout_width="0dp"
