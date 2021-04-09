@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Bite_Grid_RecycleView"
