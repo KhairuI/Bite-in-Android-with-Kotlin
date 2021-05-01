@@ -1,0 +1,3 @@
+package com.example.bite_kotlin_sqlite
+
+data class User(val id:String, val name:String,val email:String)

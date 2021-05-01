@@ -1,6 +1,8 @@
 package com.example.bite_kotlin_sqlite
 
+import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
@@ -39,4 +41,25 @@ class DBHelper(private val context: Context):SQLiteOpenHelper(context,DB_NAME,nu
         }
     }
 
+    // insert data in database....
+    fun insert(name:String,email:String):Long{
+        val db= this.writableDatabase
+        val contentValues= ContentValues()
+        contentValues.put(NAME,name)
+        contentValues.put(EMAIL,email)
+        return db.insert(TABLE_NAME,null,contentValues)
+
+    }
+    // retrieve data....
+    fun show():Cursor{
+        val db= this.readableDatabase
+        val getData= "SELECT * FROM $TABLE_NAME"
+        return db.rawQuery(getData,null)
+    }
+
+    // delete data...
+    fun delete(id:String):Int{
+        val db= this.writableDatabase
+       return db.delete(TABLE_NAME,"$ID = ?", arrayOf(id))
+    }
 }
