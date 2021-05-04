@@ -1,5 +1,7 @@
 package com.example.bite_kotlin_sqlite
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bite_kotlin_sqlite.databinding.ActivityInsertBinding
@@ -31,6 +33,23 @@ class InsertActivity : AppCompatActivity() {
             else{
                 Snackbar.make(binding.insertLayout,"Please Insert Data",Snackbar.LENGTH_SHORT).show()
             }
+        }
+        binding.viewButton.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+        binding.callButton.setOnClickListener {
+            val number= binding.phoneEditText.text.toString().trim()
+            if(number.isNotEmpty()){
+                val intent= Intent(Intent.ACTION_DIAL, Uri.parse("tel:$number"))
+                startActivity(intent)
+            }
+            else{
+                Snackbar.make(binding.insertLayout,"Please enter phone",Snackbar.LENGTH_SHORT).show()
+
+            }
+        }
+        binding.youtubeButton.setOnClickListener {
+            startActivity(Intent(this,YoutubeActivity::class.java))
         }
     }
 }
