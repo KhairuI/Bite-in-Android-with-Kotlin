@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:layout_height="match_parent"
+    tools:context=".InsertActivity">
+
+    <ImageView
+        android:id="@+id/insertImage"
+        android:layout_width="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_demo_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <EditText
+        android:hint="Enter name"
+        android:id="@+id/nameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/insertImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </EditText>
+
+    <EditText
+        android:hint="Enter student id"
+        android:id="@+id/idEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </EditText>
+
+    <Spinner
+        android:id="@+id/spinnerId"
+        android:entries="@array/department"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idEditText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <Button
+        android:text="Save"
+        android:id="@+id/saveButton"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerId"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+    <Button
+        android:text="Show"
+        android:id="@+id/showButton"
+        android:layout_marginTop="16dp"
+       android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerId"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

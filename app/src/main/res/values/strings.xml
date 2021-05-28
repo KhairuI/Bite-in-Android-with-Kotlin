@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Bite_Room_Multiple_Table</string>
+
+    <string-array name="department">
+
+        <item>Department</item>
+        <item>EEE</item>
+        <item>BBA</item>
+        <item>SWE</item>
+        <item>English</item>
+        <item>LAW</item>
+        <item> PHARMACY</item>
+        <item>NFE</item>
+        <item>CSE</item>
+
+
+    </string-array>
+</resources>
