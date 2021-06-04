@@ -64,6 +64,7 @@ class InsertActivity : AppCompatActivity(),View.OnClickListener {
             }
             R.id.showButton ->{
 
+                startActivity(Intent(this,MainActivity::class.java))
             }
         }
     }
