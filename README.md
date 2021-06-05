@@ -9,6 +9,7 @@ A Android development traning course organized by DIU CPC. In this course it foc
 5. Recycle & Grid View: https://github.com/KhairuI/Bite-in-Android/tree/Bite_Grid_Recycle
 6. SQLite Database, Shared Preference Database, Bind View: https://github.com/KhairuI/Bite-in-Android/tree/Bite_SQLite_Database
 7. Room SQLite with single Table: https://github.com/KhairuI/Bite-in-Android/tree/Bite_Room_Single_Table
+8. Room SQLite with multiple table: https://github.com/KhairuI/Bite-in-Android/tree/Room_Multiple_Table
 # Trainer:
-MD. Khairul Islam, Studying B. Sc. in Computer Science & Engineering at Daffodil International University. 
+MD. Khairul Islam, Android Developer at Easital Technologies Ltd. Studying B. Sc. in Computer Science & Engineering at Daffodil International University. 
 ![Bite-in-android](https://user-images.githubusercontent.com/48696824/111815784-437ce600-8906-11eb-983b-2fbefc4def3f.jpg)
