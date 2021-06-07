@@ -1,0 +1,2 @@
+rootProject.name = "Bite_UI_Design_1"
+include ':app'
