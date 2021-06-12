@@ -1,0 +1,2 @@
+rootProject.name = "Bite_MVVM_SQLite"
+include ':app'
