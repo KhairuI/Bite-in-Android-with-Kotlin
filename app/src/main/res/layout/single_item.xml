@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:background="@drawable/single_item_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Product name"
+            android:id="@+id/singleName"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:text="10"
+            android:id="@+id/singleAmount"
+            android:textSize="16sp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/deleteBtn"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/singleName"
+            android:src="@drawable/ic_delete"
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+
+        </ImageView>
+
+        <ImageView
+            android:src="@drawable/ic_plus"
+            android:id="@+id/plusBtn"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/singleAmount"
+            android:layout_marginTop="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+
+        </ImageView>
+
+        <ImageView
+            android:src="@drawable/ic_round_minus"
+            android:id="@+id/minusBtn"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/plusBtn"
+            app:layout_constraintTop_toBottomOf="@id/singleAmount"
+            android:layout_marginTop="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+
+        </ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
