@@ -7,3 +7,6 @@
 01. Snackbar
 02. Floating Action Button
 03. Material Alert Dialogue
+04. Date & Time Picker
+05. Bottom App Bar
+06. Edit Text
