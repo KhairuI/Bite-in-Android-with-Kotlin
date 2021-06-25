@@ -9,9 +9,17 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.example.bite_material_design_01.databinding.ActivityMainBinding
 import com.example.bite_material_design_01.databinding.CustomViewBinding
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +28,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var closeAnim:Animation
     private var isVisible=0
     private val option= arrayOf("Male","Female","Other")
+    private val fruits= arrayOf("Mango","Apple","Orange","Banana")
+    private var select= booleanArrayOf(false,true,false,false)
+    private var result=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -65,8 +77,132 @@ class MainActivity : AppCompatActivity() {
             customDialogue()
         }
         binding.dialogue2.setOnClickListener {
-            customDialogue2()
+            //customDialogue2()
+            customDialogue3()
+
         }
+        binding.datePick.setOnClickListener {
+            datePick()
+        }
+        binding.timePick.setOnClickListener {
+            timePick()
+        }
+        binding.callBtn.setOnClickListener {
+
+        }
+
+    }
+
+    private fun datePick() {
+        // initilize calender
+        val calendar= Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        calendar.clear()
+
+        // get today's
+        val today= MaterialDatePicker.todayInUtcMilliseconds()
+        calendar.timeInMillis= today
+
+        // start month
+        calendar.set(Calendar.MONTH,Calendar.JUNE)
+        val june= calendar.timeInMillis
+
+        // end month
+        calendar.set(Calendar.MONTH,Calendar.JULY)
+        val july= calendar.timeInMillis
+
+        // set constrain
+        val consBuilder= CalendarConstraints.Builder()
+        //consBuilder.setValidator(DateValidatorPointForward.now())
+        //consBuilder.setValidator(DateValidatorPointBackward.now())
+        //consBuilder.setValidator(DateValidatorPointForward.from(june))
+        consBuilder.setValidator(WeekDays())
+
+       // consBuilder.setStart(june)
+        //consBuilder.setEnd(july)
+
+        // initilize date picker
+        val builder= MaterialDatePicker.Builder.datePicker()
+       // val builder= MaterialDatePicker.Builder.dateRangePicker()
+        builder.setTitleText("Select a Date")
+      // builder.setSelection(today)
+        builder.setCalendarConstraints(consBuilder.build())
+        val datePicker= builder.build()
+        datePicker.show(supportFragmentManager,"date_picker")
+        datePicker.addOnPositiveButtonClickListener{
+            val value= datePicker.headerText
+            showSnackbar(convertDate(value))
+
+        }
+    }
+
+    private fun convertDate(date:String):String{
+        val df= SimpleDateFormat("MMM dd, yyyy", Locale.US)
+        val myFormate= SimpleDateFormat("dd.MM.yyyy", Locale.US)
+        val parse= df.parse(date)
+        return myFormate.format(parse)
+    }
+
+    private fun timePick() {
+
+        val builder= MaterialTimePicker.Builder().setTimeFormat(TimeFormat.CLOCK_12H).setTitleText("Pick your time")
+        val timePicker= builder.build()
+        timePicker.show(supportFragmentManager,"time_picker")
+        timePicker.addOnPositiveButtonClickListener{
+            val hour= timePicker.hour
+            val minute= timePicker.minute
+           // showSnackbar("$hour : $minute")
+            setTime(hour,minute)
+
+        }
+    }
+
+    private fun setTime(newHour: Int, newMinute: Int) {
+        var time=""
+        if(newHour in 0..11){
+            time = "$newHour : $newMinute AM"
+        } else {
+            if(newHour == 12){
+                time =  "$newHour : $newMinute PM"
+            } else{
+                val a= newHour-12
+                time =  "$a : $newMinute PM"
+            }
+        }
+        showSnackbar(time)
+
+    }
+
+    private fun showSnackbar(message:String){
+        Snackbar.make(binding.mainLayout,message,Snackbar.LENGTH_LONG).show()
+    }
+
+
+
+    private fun customDialogue3() {
+        val builder= MaterialAlertDialogBuilder(this)
+        builder.setTitle("Select your fruits")
+        builder.background= resources.getDrawable(R.drawable.dialogue_bg,null)
+        builder.setMultiChoiceItems(fruits,select){ dialogInterface: DialogInterface, which: Int, isChecked: Boolean ->
+            select[which]= isChecked
+        }
+        builder.setPositiveButton("YES"){ dialogInterface: DialogInterface, i: Int ->
+
+            for(i in select.indices){
+                val checked= select[i]
+                if(checked){
+                    result+= "${fruits[i]} "
+                }
+            }
+            Snackbar.make(binding.mainLayout,"You have select $result",Snackbar.LENGTH_SHORT).show()
+            result=""
+            select= booleanArrayOf(false,true,false,false)
+
+
+        }
+        builder.setNegativeButton("NO"){ dialogInterface: DialogInterface, i: Int ->
+
+        }
+        builder.show()
 
     }
 
