@@ -1,6 +1,7 @@
 package com.example.bite_material_design_01
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -73,6 +74,9 @@ class MainActivity : AppCompatActivity() {
         binding.dialogue.setOnClickListener {
             openDialogue()
         }
+        binding.callBtn.setOnClickListener {
+            startActivity(Intent(this,SecondActivity::class.java))
+        }
         binding.customDialogue.setOnClickListener {
             customDialogue()
         }
@@ -87,9 +91,7 @@ class MainActivity : AppCompatActivity() {
         binding.timePick.setOnClickListener {
             timePick()
         }
-        binding.callBtn.setOnClickListener {
 
-        }
 
     }
 
