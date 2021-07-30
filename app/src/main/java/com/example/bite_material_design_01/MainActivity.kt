@@ -52,6 +52,17 @@ class MainActivity : AppCompatActivity() {
             //snackbar.anchorView= binding.addButton
             snackbar.show()
         }
+        binding.tabActivity.setOnClickListener {
+            startActivity(Intent(this,TabActivty::class.java))
+        }
+        binding.drawer.setOnClickListener {
+            startActivity(Intent(this,DrawerActivity::class.java))
+        }
+        binding.customTab.setOnClickListener {
+            val intent= Intent(this,CustomTab::class.java)
+            intent.putExtra("page",1)
+            startActivity(intent)
+        }
         binding.addButton.setOnClickListener {
             if(isVisible==0){
 
