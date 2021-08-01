@@ -12,3 +12,7 @@
 06. Edit Text
 07. Bottom Sheet
 08. Collapsing Toolbar
+9. Fragment
+10. Tab Layout, View Pager
+11. Custom Tab
+12. Navigation Drawer
