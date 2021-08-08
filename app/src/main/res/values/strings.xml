@@ -2,4 +2,5 @@
     <string name="app_name">BiteGoogleMap</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="map_api">AIzaSyDNX9QrMdURX2J4EH8aRM_i2qxutcdOUBw</string>
 </resources>
