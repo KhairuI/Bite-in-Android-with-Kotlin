@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.GeneratedAdapter
 import androidx.lifecycle.lifecycleScope
 import com.example.bitegooglemap.R
 import com.example.bitegooglemap.adapter.PlaceAdapter
 import com.example.bitegooglemap.api.RetrofitInstance
 import com.example.bitegooglemap.databinding.FragmentChooseBinding
+import com.example.bitegooglemap.model.PlaceListModel
 import com.example.bitegooglemap.model.PlaceModel
 import com.example.bitegooglemap.utils.PermissionUtils
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -73,7 +73,7 @@ GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraIdleListener,PlaceAdapter.OnPla
                }
                 else{
                    binding.placeRecycle.visibility= View.VISIBLE
-                   placeListApiCall(makeListQuery(s,"Your api key(need paid api key in this case"))
+                   placeListApiCall(makeListQuery(s,"your_api_key(need paid api in this case)"))
                }
             }
 
@@ -109,7 +109,7 @@ GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraIdleListener,PlaceAdapter.OnPla
                 val body= response.body()!!.string()
                 if(body.isNotBlank()){
                     val jsonObject= JSONObject(body)
-                    val modelPlace= Gson().fromJson(jsonObject.toString(), PlaceModel::class.java)
+                    val modelPlace= Gson().fromJson(jsonObject.toString(), PlaceListModel::class.java)
                     val placeList= modelPlace.predictions
                     adapter.clear(true)
                     adapter.addAll(placeList!!,true)
@@ -122,6 +122,11 @@ GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraIdleListener,PlaceAdapter.OnPla
     private fun makeListQuery(s: CharSequence?,key:String):String{
         return "maps/api/place/autocomplete/json?input=${s}&key=${key}"
     }
+
+    private fun makePlaceQuery(id:String,key:String):String{
+        return "maps/api/place/details/json?place_id=${id}&key=${key}"
+    }
+
 
     private fun goToMapFragment() {
         val bundle= Bundle()
@@ -201,5 +206,38 @@ GoogleMap.OnCameraMoveListener,GoogleMap.OnCameraIdleListener,PlaceAdapter.OnPla
         binding.txtDestinationLocation.text= placeName
         binding.edtChooseDestination.setText(placeName)
         binding.placeRecycle.visibility= View.GONE
+        city= placeName!!
+        Log.d("mymsg", "onPlaceClick: $placeID")
+        placeApiCall(makePlaceQuery(placeID!!,"your_api_key(need paid api in this case)"))
+    }
+
+    private fun placeApiCall(url: String) {
+        lifecycleScope.launchWhenCreated {
+            val response= try {
+                RetrofitInstance.api.getPlace(url)
+            }catch (e:IOException){
+                Log.d("api_error", "$e")
+                return@launchWhenCreated
+            }catch (e: HttpException){
+                Log.d("api_error", "$e")
+                return@launchWhenCreated
+            }
+
+            if(response.isSuccessful && response.body() != null){
+                val body= response.body()!!.string()
+                if(body.isNotBlank()){
+                    val jsonObject= JSONObject(body)
+                    val modelPlace= Gson().fromJson(jsonObject.toString(), PlaceModel::class.java)
+                    val location= modelPlace.result?.geometry?.location
+                    currentLat= location?.lat!!
+                    currentLng= location.lng!!
+                    mMap.setOnCameraMoveListener(null)
+                    val latLng= LatLng(currentLat,currentLng)
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15f))
+                }
+            }
+
+        }
+
     }
 }

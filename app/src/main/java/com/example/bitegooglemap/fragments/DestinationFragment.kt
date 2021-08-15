@@ -77,7 +77,7 @@ class DestinationFragment : Fragment(),OnMapReadyCallback {
     }
 
     private fun init() {
-        Places.initialize(requireContext(),"Your api key(need paid api key in this case")
+        Places.initialize(requireContext(),"your_api_key(need paid api in this case)")
         autoFragment= childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autoFragment.setPlaceFields(mutableListOf(
             Place.Field.ID,

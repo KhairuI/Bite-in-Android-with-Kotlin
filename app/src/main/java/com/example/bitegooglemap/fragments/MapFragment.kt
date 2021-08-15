@@ -21,6 +21,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
+import okhttp3.Route
 import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -55,8 +57,33 @@ class MapFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMarkerClickListene
         binding.txtDestinationLocation.setOnClickListener {
             goToChooseFragment()
         }
+        binding.btnConfirm.setOnClickListener {
+            if(binding.txtDestinationLocation.text.toString() != "Choose Destination"){
+                sentRoute()
+            }
+            else{
+                Snackbar.make(requireView(),"Select your destination",Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
         return binding.root
+    }
+
+    private fun sentRoute() {
+        val bundle= Bundle()
+        val origin= LatLng(currentLat,currentLng)
+        val destination= LatLng(destinationLat,destinationLng)
+        bundle.putParcelable("origin",origin)
+        bundle.putParcelable("destination",destination)
+        val routeFragment= RouteFragment()
+        routeFragment.arguments= bundle
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.setCustomAnimations(
+                R.anim.slide_in_right_animation,
+                R.anim.slide_out_left_animation,
+                R.anim.slide_in_left_animation,
+                R.anim.slide_out_right_animation
+            )?.replace(R.id.fragment_container,routeFragment)?.addToBackStack(null)?.commit()
     }
 
     private fun getValue() {
