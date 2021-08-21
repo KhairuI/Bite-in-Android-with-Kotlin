@@ -14,6 +14,9 @@ A Android development traning course organized by DIU CPC. In this course it foc
 10. MVVM, Room SQLite, Coroutine, Voice Search: https://github.com/KhairuI/Bite-in-Android/tree/MVVM_SQLite_Corourine
 11. Android Material Design: https://github.com/KhairuI/Bite-in-Android/tree/Android_Material_Design
 12. Location & Google Map: https://github.com/KhairuI/Bite-in-Android-with-Kotlin/tree/Bite_Google_Map
+
+## Java Android Course: https://github.com/KhairuI/Dive-in-Android
+
 # Trainer:
 MD. Khairul Islam, Android Developer at Easital Technologies Ltd. Studying B. Sc. in Computer Science & Engineering at Daffodil International University. 
 ![Bite-in-android](https://user-images.githubusercontent.com/48696824/111815784-437ce600-8906-11eb-983b-2fbefc4def3f.jpg)
